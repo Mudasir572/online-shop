@@ -1,0 +1,148 @@
+*{
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Oswald' ,sans-serif;
+}
+body{
+    background-color: rgb(33, 37, 41);
+    font-family: 'Oswald', sans-serif;
+    
+    margin: 0;
+}
+#full-nav{
+    background-color: rgb(70, 115, 161);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+#main-header{
+    background-color: rgb(70, 115, 161);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 4rem;
+    position: static;
+    
+    
+    
+    width: 100%;
+   max-width: 80rem;
+   margin: 0 auto;
+    
+    
+    }
+    main{
+        width: 80%;
+        margin: 6rem auto;
+    }
+.nav-items ul{
+    display: flex;
+    gap: 2rem;
+    
+}
+.nav-items li{
+    list-style: none;
+    font-size: 1.3rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.nav-items li a{
+    text-decoration: none;
+    color: white;
+    
+}
+
+#logo{
+    display: flex;
+    align-items: center;
+}
+#logo a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+ .nav-items li:hover,#logo a:hover{
+    background-color: #212529;
+   
+}
+
+
+
+#mobile-menu{
+background-color: rgb(70, 115, 161);
+display: none;
+position: fixed;
+top: 64px;
+width: 100%;
+left: 0;
+}
+
+
+
+#mobile-menu .nav-items ul{
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+    
+   
+}
+#mobile-menu .nav-items ul li{
+    margin: 0 auto;
+    padding: 0.5rem 4rem;
+    
+   
+}
+#mobile-menu-btn{
+    background-color: transparent;
+   display: none;
+    width: 2rem;
+    height: 2rem;
+    margin: auto 0;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 4px;
+}
+#mobile-menu-btn:hover{
+background-color: #212529;
+}
+#mobile-menu-btn span{
+    background-color: white;
+    height: 3px;
+    display: block;
+    
+   
+    margin: 4px 1px;
+
+}
+
+@media screen and (max-width: 48rem) {
+    main{
+        margin: 6rem auto;
+    }
+    #main-header{
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+#main-header .nav-items{
+    display: none;
+}
+
+ 
+#mobile-menu-btn{
+    display: block;
+}
+#mobile-menu.open{
+    display: block;
+    }
+}
+
