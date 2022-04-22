@@ -3,6 +3,12 @@ main h2{
     color: #fff;
     font-weight: bold;
 }
+.alert{
+    font-family: inherit;
+    font-weight: bold;
+    color: rgb(165, 74, 74);
+    text-align: center;
+}
 .form{
     background-color: #fff;
     display: flex;
@@ -22,6 +28,17 @@ main h2{
 .form hr{
     width: 90%;
     background-color: black;
+}
+.form a{
+    text-align: center;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: bold;
+    color: rgb(70, 115, 161);
+    margin: auto;
+}
+.form a:hover{
+    color: rgb(7, 95, 182);
 }
 .form div label{
     text-align: center;
