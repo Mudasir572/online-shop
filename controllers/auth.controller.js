@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const bcrypt = require("bcrypt");
 
 function getSignup(req, res) {
   let sessionData = req.session.flashedData;
@@ -92,15 +93,76 @@ async function signUp(req,res) {
 }
 
 function getLogin(req, res) {
-  res.render("auth/login");
+  let sessionData = req.session.flashedData;
+  if(!sessionData){
+    sessionData = {
+        email: "",
+        password: "",
+    }
 }
 
-function login(req,res){
 
+  req.session.flashedData = null;
+  res.render("auth/login",{inputData: sessionData});
+}
+
+ async function login(req,res){
+  const enteredData = {
+    email: req.body.email,
+    password: req.body.password,
+
+  }
+
+  const user = new User(req.body.email,req.body.password);
+  
+  const userWithSameEmail = await user.getUserWithSameEmail();
+
+  if(!userWithSameEmail){
+    req.session.flashedData = {
+      errorMassage:
+        "Invalid Email or Password",
+      ...enteredData,
+    };
+    req.session.save(function () {
+      res.redirect("/login");
+    });
+
+    return;
+
+  }
+
+const passwordIsCurrect = await bcrypt.compare(user.password,userWithSameEmail.password);
+if(!passwordIsCurrect){
+  req.session.flashedData = {
+    errorMassage:
+      "Invalid Email or Password",
+    ...enteredData,
+  };
+  req.session.save(function () {
+    res.redirect("/login");
+  });
+
+  return;
+
+}
+  
+
+  req.session.uid = userWithSameEmail._id.toString();
+  req.session.isAdmin = userWithSameEmail.isAdmin;
+  req.session.save(function(){
+    res.redirect('/');
+  })
+
+}
+
+function logout(req,res){
+req.session.uid = null;
+res.redirect('/login');
 }
 module.exports = {
   getSignup: getSignup,
   signUp: signUp,
   getLogin: getLogin,
-  login: login
+  login: login,
+  logout: logout
 };
