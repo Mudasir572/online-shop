@@ -38,6 +38,7 @@ body{
     main{
         width: 80%;
         margin: 6rem auto;
+        max-width: 75rem;
     }
 .nav-items ul{
     display: flex;

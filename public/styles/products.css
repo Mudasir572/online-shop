@@ -1,0 +1,58 @@
+main h2{
+    color: white;
+}
+.btn-alt{
+    text-decoration: none;
+    color:  white;
+    background-color: rgb(186, 83, 83);
+    padding: 0.4rem 0.8rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-radius: 4px;
+}
+.btn-alt:hover{
+background-color: rgb(181, 56, 56);
+}
+.products{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem auto;
+    
+}
+
+.product-item{
+    color: white;
+    background-color: rgb(70, 115, 161);
+    text-align: center;
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+
+.product-item  img{
+    width: 100%;
+    height: 180px;
+    box-sizing: border-box;
+    object-fit: cover; 
+    
+  
+}
+@media (max-width: 48rem) {
+    .products{
+     grid-template-columns: 1fr 1fr;
+     gap: 1rem;
+    }
+    
+}
+@media (max-width: 32rem){
+    .products{
+        display: flex;
+        flex-direction: column;
+    }
+}
+

@@ -1,0 +1,11 @@
+<div class="products">
+    <% for(const product of products){ %>
+     <div class="product-item">
+        
+         <img src="<%= product.imageUrl  %>" alt="<%=product.title  %>">
+         <h2><%= product.title %></h2>
+         <p>$<%= product.price  %> </p>
+         
+     </div>
+     <% } %>  
+</div>
