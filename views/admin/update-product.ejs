@@ -1,10 +1,10 @@
 <%- include('../shared/includes/head',{pageTitle: 'Shop'})  %> 
-
+<link rel="stylesheet" href="/styles/forms.css">
 </head>
 <body>
     <%- include('../shared/includes/header')  %> 
     <main>
-   
+   <%- include("../shared/includes/product-form",{submitPath: "/admin/products/"+product.id,product: product,imageRequired: false})  %> 
     </main>
 </body>
 </html>

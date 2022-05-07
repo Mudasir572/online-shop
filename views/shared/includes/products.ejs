@@ -1,11 +1,25 @@
 <div class="products">
     <% for(const product of products){ %>
-     <div class="product-item">
-        
-         <img src="<%= product.imageUrl  %>" alt="<%=product.title  %>">
-         <h2><%= product.title %></h2>
-         <p>$<%= product.price  %> </p>
-         
-     </div>
-     <% } %>  
+        <div class="product-item">
+
+            <img src="<%= product.imageUrl  %>" alt="<%=product.title  %>">
+            <h2>
+                <%= product.title %>
+            </h2>
+            <p>$<%= product.price %>
+            </p>
+            <div class="actions">
+                <%if(locals.isAdmin) { %>
+                    <button class="btn"><a href="/admin/products/<%=product.id  %>">Update</a></button>
+
+                    <button class="btn delete"  data-productid="<%=product.id%>"
+                        data-csrf="<%=locals.csrfToken  %>">Delete</button>
+
+
+                    <% }else{ %>
+                        <button class="btn"><a href="/products/<%=product.id %>">View Details</a></button>
+                        <% } %>
+            </div>
+        </div>
+        <% } %>
 </div>

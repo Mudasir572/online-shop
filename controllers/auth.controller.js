@@ -150,7 +150,11 @@ if(!passwordIsCurrect){
   req.session.uid = userWithSameEmail._id.toString();
   req.session.isAdmin = userWithSameEmail.isAdmin;
   req.session.save(function(){
+    if(req.session.isAdmin){
+      res.redirect('/admin/products')
+    }else{
     res.redirect('/');
+    }
   })
 
 }
