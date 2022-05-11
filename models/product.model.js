@@ -42,9 +42,9 @@ class Product {
   }
   static async findById(productId){
     const prodId =  new mongodb.ObjectId(productId);
-    const product = await db.getDb().collection('products').findOne({_id: prodId})
+    const productDocument = await db.getDb().collection('products').findOne({_id: prodId})
 
-    return new Product(product);
+    return new Product(productDocument);
   }
 
  delete(){

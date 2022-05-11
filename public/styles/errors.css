@@ -1,0 +1,24 @@
+
+h1{
+    color: white;
+
+}
+.btn-alt{
+    text-decoration: none;
+    color:  white;
+    background-color: rgb(186, 83, 83);
+    padding: 0.4rem 0.8rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-radius: 4px;
+}
+.btn-alt:hover{
+background-color: rgb(181, 56, 56);
+}
+p{
+    color: #fff;
+    font-family: inherit;
+    font-weight: bold;
+
+}

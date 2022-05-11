@@ -12,8 +12,12 @@ const app = express();
 const authRoutes = require("./routes/auth.routes");
 const customerRoutes = require("./routes/customer.routes");
 const adminRoutes = require("./routes/admin.routes");
+const baseRoutes = require("./routes/base.routes");
 const addCsrfTokenMiddleware = require("./middlewares/csrf-token");
-const checkAuthStatusMiddleware = require("./middlewares/check-auth")
+const checkAuthStatusMiddleware = require("./middlewares/check-auth");
+const protectRoutesMiddleware = require("./middlewares/protect-routes");
+const errorHandlerMiddleware = require("./middlewares/error-handler");
+const notFoundMiddleware = require("./middlewares/not-found");
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'))
 
@@ -30,11 +34,15 @@ app.use(csrf());
 app.use(addCsrfTokenMiddleware);
 app.use(checkAuthStatusMiddleware);
 
-
+app.use(baseRoutes);
 app.use(authRoutes);
+app.use(protectRoutesMiddleware);
 app.use(customerRoutes);
 app.use(adminRoutes);
 
+app.use(notFoundMiddleware);
+
+app.use(errorHandlerMiddleware);
 
 db.connectToDatabase().then(function(){
     app.listen(3000);

@@ -1,7 +1,13 @@
 const Product = require('../models/product.model');
 
-async function getAllProducts(req,res){
-    const products = await Product.findAll();
+async function getAllProducts(req,res,next){
+    let products;
+    try{
+     products = await Product.findAll();
+    }catch(error){
+    return  next(error);
+    
+    }
     res.render("admin/products",{products: products});
 }
 
@@ -18,7 +24,12 @@ function getAddProduct(req,res){
           const product = new Product({
               ...req.body,
             image: req.file.filename});
-          await product.save();
+            try{
+                await product.save();
+
+            }catch(error){
+                return next(error);
+            }
 
           res.redirect('/admin/products')
     }
@@ -33,7 +44,14 @@ async function updateProduct(req,res){
     const product = new Product({
         ...req.body,
       _id: req.params.id});
-    await product.save();
+      try{
+          await product.save();
+    
+    }catch(error){
+       return next(error);
+    }
+
+          
 
     res.redirect('/admin/products')
 }
@@ -45,7 +63,7 @@ async function deleteProduct(req,res){
  product = await Product.findById(req.params.id);
 await product.delete();
 }catch(error){
-    console.log(error)
+   return next(error)
 }
     
    res.json({message: "Deleted Product!"});
