@@ -1,10 +1,44 @@
 <%- include('../shared/includes/head',{pageTitle: 'Cart'})  %> 
-
+<link rel="stylesheet" href="/styles/cart.css">
 </head>
 <body>
     <%- include('../shared/includes/header')  %> 
     <main>
-   <h2>cart</h2>
+        <ul id="cart-items">
+            <% for(const item of locals.cart.items){ %>
+            <li>
+                <article class="cart-item">
+                    <div class="cart-item-info">
+                        <div class="image"><img src="<%=item.product.imageUrl  %>" alt="Product Image"></div>
+                        <div><h2><%= item.product.title  %></h2>
+                            <a href="/products/<%=item.product.id %>">View Details</a>
+                        <p>$<span class="cart-item-price"><%= item.totalPrice.toFixed(2) %></span> <span class="product-item-price">($<%=item.product.price.toFixed(2) %>)</span></p>
+                        </div>
+                    </div>
+                
+                    <form class="cart-item-management" data-productid="<%=item.product.id %>" data-csrf="<%=locals.csrfToken %>">
+                        <input type="number" value="<%=item.quantity  %>" required>
+                        <button class="btn">Update</button>
+                    </form>
+                </article>
+            </li>
+            <% } %> 
+        </ul>
+
+        <div id="cart-total">
+            <p>Total: $<span id="cart-total-price"><%=locals.cart.totalPrice.toFixed(2) %></span></p>
+            
+        <% if(locals.isAuth && locals.cart.totalQuantity > 0){ %> 
+           <form action="/orders" method="POST">
+               <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+               <button class="btn btn-alt">Buy Products</button>
+           </form>
+   
+            <% } else{ %>
+               <p id="cart-total-fallback">Log in or add items to the cart to proceed and purchase the items.</p>
+               <%  }%>  
+        </div>
+       
     </main>
 </body>
 </html>

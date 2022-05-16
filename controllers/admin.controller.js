@@ -24,6 +24,7 @@ function getAddProduct(req,res){
           const product = new Product({
               ...req.body,
             image: req.file.filename});
+            
             try{
                 await product.save();
 
@@ -44,9 +45,11 @@ async function updateProduct(req,res){
     const product = new Product({
         ...req.body,
       _id: req.params.id});
+      if(req.file){
+          product.replaceImage(req.file.filename)
+      }
       try{
           await product.save();
-    
     }catch(error){
        return next(error);
     }

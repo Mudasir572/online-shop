@@ -5,9 +5,7 @@ const router = express.Router();
 const customerController = require('../controllers/customer.controller');
 
 router.get('/products',customerController.getShop)
-router.get('/cart',function(req,res){
-    res.render('customer/cart')
-});
+
 
 router.get('/orders',function(req,res){
     res.render('customer/orders')

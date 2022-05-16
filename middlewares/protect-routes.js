@@ -4,7 +4,7 @@ function protectAdminRoutes(req,res,next){
     }
 
     if(req.path.startsWith("/admin") && !res.locals.isAdmin){
-    res.render('shared/403')
+    res.redirect('/403')
     return;
 }
 

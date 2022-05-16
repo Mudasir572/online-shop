@@ -14,6 +14,12 @@ class Product {
     }
   }
 
+  replaceImage(newImage){
+      this.image = newImage;
+      this.imagePath = `product-data/images/${newImage}`;
+      this.imageUrl = `/products/assets/images/${newImage}`;
+  }
+
   async save() {
     const productData = {
       title: this.title,
@@ -41,10 +47,22 @@ class Product {
     });
   }
   static async findById(productId){
-    const prodId =  new mongodb.ObjectId(productId);
-    const productDocument = await db.getDb().collection('products').findOne({_id: prodId})
+    let prodId;
+    try{
+      prodId =  new mongodb.ObjectId(productId);
 
-    return new Product(productDocument);
+    }catch(error){
+      error.code = 404;
+      throw error;
+    }
+    const product = await db.getDb().collection('products').findOne({_id: prodId})
+
+    if (!product) {
+      const error = new Error('Could not find product with provided id.');
+      error.code = 404;
+      throw error;
+    }
+    return new Product(product);
   }
 
  delete(){
