@@ -31,10 +31,10 @@ app.use(express.json())
 app.use(expressSession(createSessionConfig()));
 
 app.use(csrf());
+app.use(initializeCartMiddleware);
 
 app.use(addCsrfTokenMiddleware);
 
-app.use(initializeCartMiddleware);
 app.use(checkAuthStatusMiddleware);
 
 app.use(cartRoutes);

@@ -10,5 +10,7 @@ router.get('/cart',async function(req,res){
 
 router.post('/cart',cartController.addToCart);
 
+router.patch('/cart/items', cartController.updateCart);
+
 
 module.exports = router;
