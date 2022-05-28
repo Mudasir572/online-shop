@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.get('/admin/products',adminController.getAllProducts);
 
-router.get('/admin/orders',adminController.getAllOrders);
+
+
 
 router.get('/admin/products/new',adminController.getAddProduct);
 
@@ -15,5 +16,9 @@ router.post('/admin/products',imageUploadMiddlewareMulter,adminController.addPro
 router.get("/admin/products/:id",adminController.getUpdateProduct)
 router.post("/admin/products/:id",imageUploadMiddlewareMulter,adminController.updateProduct)
 
-router.delete("/admin/products/:id",adminController.deleteProduct)
+router.delete("/admin/products/:id",adminController.deleteProduct);
+
+router.get('/admin/orders',adminController.getAllOrders);
+
+router.patch("/admin/orders/:id",adminController.updateOrder);
 module.exports = router;

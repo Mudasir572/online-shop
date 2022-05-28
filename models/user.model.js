@@ -5,7 +5,6 @@ const db = require("../data/database");
 class User {
   constructor(email, password, username, city, postalcode, street) {
     this.email = email;
-
     this.password = password;
     this.username = username;
     this.address = {
@@ -27,6 +26,15 @@ class User {
 
    getUserWithSameEmail(){
      return db.getDb().collection("users").findOne({email: this.email})
+  }
+
+  static  findById(userId){
+    const uid = new mongodb.ObjectId(userId);
+
+    return db
+      .getDb()
+      .collection("users")
+      .findOne({ _id: uid }, {projection: {password: 0 }});
   }
 
 

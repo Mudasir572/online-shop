@@ -14,12 +14,14 @@ const customerRoutes = require("./routes/customer.routes");
 const adminRoutes = require("./routes/admin.routes");
 const baseRoutes = require("./routes/base.routes");
 const cartRoutes = require("./routes/cart.routes");
+const orderRoutes = require("./routes/order.routes");
 const addCsrfTokenMiddleware = require("./middlewares/csrf-token");
 const checkAuthStatusMiddleware = require("./middlewares/check-auth");
 const protectRoutesMiddleware = require("./middlewares/protect-routes");
 const errorHandlerMiddleware = require("./middlewares/error-handler");
 const notFoundMiddleware = require("./middlewares/not-found");
 const initializeCartMiddleware = require("./middlewares/initialize-cart");
+const updateCartPricesMiddleware = require("./middlewares/update-cart-prices");
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'))
 
@@ -33,6 +35,8 @@ app.use(expressSession(createSessionConfig()));
 app.use(csrf());
 app.use(initializeCartMiddleware);
 
+app.use(updateCartPricesMiddleware);
+
 app.use(addCsrfTokenMiddleware);
 
 app.use(checkAuthStatusMiddleware);
@@ -41,12 +45,13 @@ app.use(cartRoutes);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(protectRoutesMiddleware);
+app.use(orderRoutes);
 app.use(customerRoutes);
 app.use(adminRoutes);
 
 app.use(notFoundMiddleware);
 
-app.use(errorHandlerMiddleware);
+// app.use(errorHandlerMiddleware);
 
 db.connectToDatabase().then(function(){
     app.listen(3000);

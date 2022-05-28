@@ -4,6 +4,8 @@ const updateCartFormElements = document.querySelectorAll(
 
 const cartTotalPriceElement = document.querySelector("#cart-total-price");
 const cartQuantityBadges = document.querySelectorAll(".nav-items .badge");
+
+
 async function updateCart(event) {
   event.preventDefault();
   const form = event.target;
@@ -35,6 +37,11 @@ async function updateCart(event) {
   }
 
   const responseData = await response.json();
+
+  if(responseData.updatedCartData.newTotalQuantity === 0){
+    location.reload();
+  }
+  
   if (responseData.updatedCartData.updatedItemPrice === 0) {
     form.parentElement.parentElement.remove();
   } else {

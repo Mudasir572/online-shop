@@ -1,10 +1,17 @@
 <%- include('../shared/includes/head',{pageTitle: 'Orders'})  %> 
-
+<link rel="stylesheet" href="/styles/orders.css"> 
 </head>
 <body>
     <%- include('../shared/includes/header')  %> 
     <main>
-   <h2>orders</h2>
+   <h2>All your Orders.</h2>
+   <div class="orders">
+       <% for(const order of orders){ %>
+        <%- include('../shared/includes/order-item',{order: order});  %> 
+        <% } %>  
+
+   </div>
+
     </main>
 </body>
 </html>

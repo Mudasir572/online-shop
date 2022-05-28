@@ -1,0 +1,61 @@
+main{
+    color: white;
+    max-width: 800px;
+}
+.single-order{
+    background-color: rgb(109 91 91);;
+    padding:  0.25rem 1rem;     
+    margin: 1rem auto;
+    border-radius: 8px;
+    
+    
+}
+.total-price{
+    color: rgb(230, 126, 52);
+    font-weight: bold;
+}
+.single-order h2{
+    margin: 0;
+}
+.single-order article{
+    display: flex;
+    justify-content: space-between;
+}
+.single-order article address a{
+    text-decoration: none;
+    color: rgb(230, 126, 52);
+    font-weight: bold;
+}
+.single-order article ul{
+    list-style: square;
+}
+.status{
+    color: rgb(255, 253, 253);
+    background-color: chocolate;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.5rem;
+    margin-top: 6px;
+    display: inline-block;
+    border-radius: 6px;
+    
+}
+.status-control{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0.25rem;
+    align-items: center;
+}
+.order-actions{
+    margin-top: 1rem;
+}
+.status-control select{
+ padding: 0.5rem 0.15rem; 
+ border-radius: 4px;
+}
+@media (max-width: 39rem) {
+    .single-order article{
+        flex-direction: column;
+    
+    }
+}
