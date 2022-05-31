@@ -1,13 +1,15 @@
 <%- include('../shared/includes/head',{pageTitle: 'Success!'})  %> 
 <link rel="stylesheet" href="/styles/errors.css">
+
 </head>
 <body>
     <%- include('../shared/includes/header')  %> 
     <main>
-  <h1>Order was Successfull!</h1>
-  <p>You can visit <a href="/orders">the orders page</a> for more details.</p>
+  <h1 id="success-h">Order was Successfull!</h1>
+  <h2>You can visit <a id="success-a" href="/orders">the orders page</a> for more details.</h2>
     
  </main>
+ <%-include("../shared/includes/footer")  %> 
 
 </body>
 </html>

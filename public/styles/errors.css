@@ -1,4 +1,6 @@
-
+main{
+    color: white;
+}
 h1{
     color: white;
 
@@ -22,3 +24,14 @@ p{
     font-weight: bold;
 
 }
+#success-h{
+    color: green;
+    }
+  #success-a{
+    color: red;
+    text-decoration: none;
+  }
+  #failure-h{
+      color: red;
+  }
+  
