@@ -1,0 +1,39 @@
+<%- include('../shared/includes/head',{pageTitle: 'Login'})  %> 
+<link rel="stylesheet" href="/styles/forms.css">
+</head>
+<body>
+    <%- include('../shared/includes/header')  %> 
+    <main >
+        <h2>Add Coupon</h2>
+        <form class="form" action="/admin/coupon" method="POST">
+            <input type="hidden" name="_csrf" value="<%=locals.csrfToken  %>" required>
+             <div>
+                <label for="code">Code</label>
+                <p>A code is auto generated for you.</p>
+                <input type="text" id="code" name="code" value="<%=couponCode%>" required>
+             </div>
+             <div>
+                <label for="type">Discount type</label>
+                <select name="type" id="type">
+                    <option value="persentage">Persentage</option>
+                    <option value="amount">Amount</option>
+                </select>
+    
+             </div>
+             <div>
+                <label for="discount">Discount</label>
+                <input type="number" id="discount" name="discount" required>
+             </div>
+             <div>
+                <label for="expiry">Discount</label>
+                <input type="date" id="expiry" name="expiry" required>
+             </div>
+             
+                 <button class="btn">Add Coupon</button>
+             </div>
+            </form>
+    </main>
+<%-include("../shared/includes/footer")  %> 
+
+</body>
+</html>

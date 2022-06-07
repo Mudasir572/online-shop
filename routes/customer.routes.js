@@ -10,5 +10,7 @@ router.get('/products',customerController.getShop)
 
 
 router.get('/products/:id',customerController.getProductDetails);
+
+router.post('/coupon',customerController.applyCoupon);
 module.exports = router;
 

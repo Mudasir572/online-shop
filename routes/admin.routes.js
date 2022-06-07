@@ -21,4 +21,9 @@ router.delete("/admin/products/:id",adminController.deleteProduct);
 router.get('/admin/orders',adminController.getAllOrders);
 
 router.patch("/admin/orders/:id",adminController.updateOrder);
+
+router.get('/admin/coupon',adminController.getAddCoupon);
+
+router.post('/admin/coupon',adminController.addCoupon);
+
 module.exports = router;

@@ -56,6 +56,9 @@ main h2{
     font-family: inherit;
     
 }
+.form div p{
+    margin: 0;
+}
 
 #image-upload-control{
     display: flex;

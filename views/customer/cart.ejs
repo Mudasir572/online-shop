@@ -1,6 +1,8 @@
 <%- include('../shared/includes/head',{pageTitle: 'Cart'})  %> 
 <link rel="stylesheet" href="/styles/cart.css">
+<script src="/scripts/add-coupon.js" defer></script>
 <script src="/scripts/cart-item-management.js" defer></script>
+
 </head>
 <body>
     <%- include('../shared/includes/header')  %> 
@@ -26,6 +28,13 @@
             <% } %> 
         </ul>
 
+        <% if(locals.isAuth && locals.cart.totalQuantity > 0){ %> 
+            <form id="coupon-form"  data-csrf="<%=locals.csrfToken %>">
+                <input type="text"  placeholder="Coupon code" required>
+                <button class="btn">Apply Coupon</button>
+            </form>
+    
+             <% }  %>
         <div id="cart-total">
             <p>Total: $<span id="cart-total-price"><%=locals.cart.totalPrice.toFixed(2) %></span></p>
             

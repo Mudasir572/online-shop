@@ -1,5 +1,7 @@
 const Product = require("../models/product.model");
 const Order = require("../models/order.model");
+const Coupon = require("../models/coupon.model");
+const couponCodeGenerator = require("../util/generate-coupon-code");
 
 async function getAllProducts(req, res, next) {
   let products;
@@ -10,8 +12,6 @@ async function getAllProducts(req, res, next) {
   }
   res.render("admin/products", { products: products });
 }
-
-
 
 function getAddProduct(req, res) {
   res.render("admin/new-product");
@@ -38,24 +38,22 @@ async function getUpdateProduct(req, res) {
   res.render("admin/update-product", { product: product });
 }
 
-
-
 async function updateOrder(req, res, next) {
-    const orderId = req.params.id;
-    const newStatus = req.body.newStatus;
-  
-    try {
-      const order = await Order.findById(orderId);
-  
-      order.status = newStatus;
-  
-      await order.save();
-  
-      res.json({ message: 'Order updated', newStatus: newStatus });
-    } catch (error) {
-      next(error);
-    }
+  const orderId = req.params.id;
+  const newStatus = req.body.newStatus;
+
+  try {
+    const order = await Order.findById(orderId);
+
+    order.status = newStatus;
+
+    await order.save();
+
+    res.json({ message: "Order updated", newStatus: newStatus });
+  } catch (error) {
+    next(error);
   }
+}
 
 async function updateProduct(req, res) {
   const product = new Product({
@@ -86,16 +84,34 @@ async function deleteProduct(req, res) {
   res.json({ message: "Deleted Product!" });
 }
 
-async function getAllOrders(req,res,next){
-  try{
+async function getAllOrders(req, res, next) {
+  try {
     const orders = await Order.findAllOrders();
-    res.render('admin/orders',{orders: orders})
-   
-  }catch(error){
-    return next(error)
+    res.render("admin/orders", { orders: orders });
+  } catch (error) {
+    return next(error);
   }
+}
+
+async function getAddCoupon(req, res, next) {
+const couponCode = couponCodeGenerator();
 
 
+
+  res.render("admin/add-coupon",{couponCode: couponCode});
+}
+
+async function addCoupon(req, res, next) {
+  const coupon = new Coupon(
+    req.body.code,
+    req.body.type,
+    req.body.discount,
+    req.body.expiry
+  );
+
+  await coupon.save();
+
+  res.redirect("/orders/success");
 }
 module.exports = {
   getAllProducts: getAllProducts,
@@ -106,4 +122,6 @@ module.exports = {
   deleteProduct: deleteProduct,
   updateOrder: updateOrder,
   getAllOrders: getAllOrders,
+  getAddCoupon: getAddCoupon,
+  addCoupon: addCoupon,
 };
