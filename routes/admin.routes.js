@@ -26,4 +26,5 @@ router.get('/admin/coupon',adminController.getAddCoupon);
 
 router.post('/admin/coupon',adminController.addCoupon);
 
+router.get('/coupon/success',adminController.getCouponSuccess);
 module.exports = router;

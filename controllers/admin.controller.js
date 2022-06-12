@@ -111,7 +111,12 @@ async function addCoupon(req, res, next) {
 
   await coupon.save();
 
-  res.redirect("/orders/success");
+  res.redirect("/coupon/success");
+}
+
+function getCouponSuccess(req,res){
+  res.render("admin/coupon-added");
+
 }
 module.exports = {
   getAllProducts: getAllProducts,
@@ -124,4 +129,5 @@ module.exports = {
   getAllOrders: getAllOrders,
   getAddCoupon: getAddCoupon,
   addCoupon: addCoupon,
+  getCouponSuccess: getCouponSuccess,
 };

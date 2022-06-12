@@ -1,57 +1,87 @@
-<%- include('../shared/includes/head',{pageTitle: 'Cart'})  %> 
-<link rel="stylesheet" href="/styles/cart.css">
-<script src="/scripts/add-coupon.js" defer></script>
-<script src="/scripts/cart-item-management.js" defer></script>
+<%- include('../shared/includes/head',{pageTitle: 'Cart' }) %>
+    <link rel="stylesheet" href="/styles/cart.css">
+    <script src="/scripts/add-coupon.js" defer></script>
+    <script src="/scripts/cart-item-management.js" defer></script>
 
-</head>
-<body>
-    <%- include('../shared/includes/header')  %> 
-    <main>
-        <ul id="cart-items">
-            <% for(const item of locals.cart.items){ %>
-            <li>
-                <article class="cart-item">
-                    <div class="cart-item-info">
-                        <div class="image"><img src="<%=item.product.imageUrl  %>" alt="Product Image"></div>
-                        <div><h2><%= item.product.title  %></h2>
-                            <a href="/products/<%=item.product.id %>">View Details</a>
-                        <p>$<span class="cart-item-price"><%= item.totalPrice.toFixed(2) %></span> <span class="product-item-price">($<%=item.product.price.toFixed(2) %>)</span></p>
-                        </div>
-                    </div>
-                
-                    <form class="cart-item-management" data-productid="<%=item.product.id %>" data-csrf="<%=locals.csrfToken %>">
-                        <input type="number" value="<%=item.quantity%>" required>
-                        <button class="btn">Update</button>
+    </head>
+
+    <body>
+        <%- include('../shared/includes/header') %>
+            <main>
+                <ul id="cart-items">
+                    <% for(const item of locals.cart.items){ %>
+                        <li>
+                            <article class="cart-item">
+                                <div class="cart-item-info">
+                                    <div class="image"><img src="<%=item.product.imageUrl  %>" alt="Product Image">
+                                    </div>
+                                    <div>
+                                        <h2>
+                                            <%= item.product.title %>
+                                        </h2>
+                                        <a href="/products/<%=item.product.id %>">View Details</a>
+                                        <p>$<span class="cart-item-price">
+                                                <%= item.totalPrice.toFixed(2) %>
+                                            </span> <span class="product-item-price">($<%=item.product.price.toFixed(2)
+                                                    %>)</span></p>
+                                    </div>
+                                </div>
+
+                                <form class="cart-item-management" data-productid="<%=item.product.id %>"
+                                    data-csrf="<%=locals.csrfToken %>">
+                                    <input type="number" value="<%=item.quantity%>" required>
+                                    <button class="btn">Update</button>
+                                </form>
+                            </article>
+                        </li>
+                        <% } %>
+                </ul>
+                <% if(locals.isAuth && locals.cart.totalQuantity> 0){ %>
+                    <form id="coupon-form" data-csrf="<%=locals.csrfToken %>">
+                        <input type="text" placeholder="Coupon code" required>
+                        <button class="btn">Apply Coupon</button>
                     </form>
-                </article>
-            </li>
-            <% } %> 
-        </ul>
 
-        <% if(locals.isAuth && locals.cart.totalQuantity > 0){ %> 
-            <form id="coupon-form"  data-csrf="<%=locals.csrfToken %>">
-                <input type="text"  placeholder="Coupon code" required>
-                <button class="btn">Apply Coupon</button>
-            </form>
-    
-             <% }  %>
-        <div id="cart-total">
-            <p>Total: $<span id="cart-total-price"><%=locals.cart.totalPrice.toFixed(2) %></span></p>
-            
-        <% if(locals.isAuth && locals.cart.totalQuantity > 0){ %> 
-           <form action="/orders" method="POST">
-               <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
-               <button class="btn btn-alt">Buy Products</button>
-           </form>
-   
-            <% } else{ %>
-               <p id="cart-total-fallback">Log in or add items to the cart to proceed and purchase the items.</p>
-               <%  }%>  
-        </div>
-       
-    </main>
-    
-    <%-include("../shared/includes/footer")  %> 
+                    <% } %>
+                        <p class="error-message"
+                            style="display: none;color: rgb(231, 68, 68); margin: 0 auto;text-align: center;">"No such
+                            Coupon exists"</p>
+                        <p class="success-message"
+                            style="display: none;color: rgb(49, 171, 45); margin: 0 auto;text-align: center;">"Coupon
+                            applied!"</p>
+                        
+                                <div id="cart-total">
 
-</body>
-</html>
+                                    <p id="discount-detailsss" style="display: none;"> </p>
+                                    <% if(locals.coupon && locals.coupon.type==="persentage" ){ %>
+                                        <p id="discount-details">Coupon Discount: <%=locals.coupon.discount %>% </p>
+
+                                        <% } else if(locals.coupon && locals.coupon.type==="amount" ){%>
+                                            <p id="discount-details">Coupon Discount: $<%=locals.coupon.discount %>
+                                            </p>
+
+                                            <% } %>
+
+                                                <p>Total: $<span id="cart-total-price">
+                                                        <%=locals.cart.totalPrice.toFixed(2) %>
+                                                    </span></p>
+                                                <% if(locals.isAuth && locals.cart.totalQuantity> 0){ %>
+                                                    <form action="/orders" method="POST">
+                                                        <input type="hidden" name="_csrf"
+                                                            value="<%= locals.csrfToken %>">
+                                                        <button class="btn btn-alt">Buy Products</button>
+                                                    </form>
+
+                                                    <% } else{ %>
+                                                        <p id="cart-total-fallback">Log in or add items to the cart to
+                                                            proceed and purchase the items.</p>
+                                                        <% }%>
+                                </div>
+
+            </main>
+
+            <%-include("../shared/includes/footer") %>
+
+    </body>
+
+    </html>

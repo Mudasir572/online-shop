@@ -29,24 +29,40 @@ async function getProductDetails(req,res,next){
 }
 
 async function applyCoupon(req,res,next){
-    let cart = res.locals.cart;
+    const cart = res.locals.cart;
     
     let coupon;
     try{
         coupon = await Coupon.findByCode(req.body.code); 
     }catch(error){
-        return next(error);
+        next(error);
+        return; 
     }
-    req.session.coupon = coupon;
+    
+    if(req.session.coupon){
+        return
 
-    const discount = (cart.totalPrice/100) * coupon.discount;
-    cart.totalPrice = cart.totalPrice - discount;
+}
+    
+    
+      let discount;
+    if(coupon.type === 'persentage'){
+        discount = (cart.totalPrice/100) * coupon.discount;
+    
+        cart.totalPrice = cart.totalPrice - discount;
+    }else if(coupon.type === 'amount'){
+        discount = coupon.discount;
+        cart.totalPrice = cart.totalPrice - discount;
+    }
+
     req.session.cart = cart;
-
-    res.json({
-        massage: "coupon added",
-        discount: discount,
+    req.session.coupon = coupon;
+    res.locals.coupon = req.session.coupon;
+   
+     res.json({
         totalPrice: cart.totalPrice,
+        discount: discount,
+        coupon: coupon,
 
     })
 

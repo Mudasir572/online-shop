@@ -57,6 +57,10 @@ async function updateCart(event) {
   for (const badgeElement of cartQuantityBadges) {
     badgeElement.textContent = responseData.updatedCartData.newTotalQuantity;
   }
+  if(responseData.couponApplied === true){
+    location.reload();
+  }
+
 }
 
 for (const formElement of updateCartFormElements) {

@@ -23,15 +23,25 @@ async function addToCart(req, res, next) {
 function updateCart(req, res) {
   const cart = res.locals.cart;
 
+//   if(req.session.coupon){
+// // console.log("coupon added")
+// // location.reload()
+//     return
+//   }
   const updatedItemData = cart.updateItem(
     req.body.productId,
     +req.body.quantity
   );
 
   req.session.cart = cart;
+  let couponApplied = false;
+  if(res.locals.coupon){
+    couponApplied = true;
+  }
 
   res.json({
     massage: "cart item Updated!",  
+    couponApplied: couponApplied,
     updatedCartData: {
       newTotalQuantity: cart.totalQuantity,
       newTotalPrice: cart.totalPrice,

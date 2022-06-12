@@ -76,6 +76,12 @@ object-fit: cover;
 margin-left: 10px;
 display: none;
 }
+#coupon-form{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (max-width: 36rem) {
     #image-upload-control{

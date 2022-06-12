@@ -51,7 +51,7 @@ app.use(adminRoutes);
 
 app.use(notFoundMiddleware);
 
-// app.use(errorHandlerMiddleware);
+app.use(errorHandlerMiddleware);
 
 db.connectToDatabase().then(function(){
     app.listen(3000);

@@ -78,6 +78,21 @@ ul li{
     width: 75%;
     margin: auto;
 }
+#coupon-form{
+      margin: 0.25rem auto;
+      display: flex;
+      justify-content: center;
+      
+  }
+#coupon-form button{
+      margin: 0 0.5rem;
+      
+  }
+#coupon-form input{
+      border-radius: 4px;
+      border: none;
+      
+  }
 
 #cart-total #cart-total-fallback{
 font-size: 1rem;
@@ -112,5 +127,10 @@ font-size: 1rem;
     }
     .cart-item p{
         margin-top: 15px;
+      }
+      #coupon-form{
+          flex-direction: column;
+          gap: 0.5rem;
+          width: 14rem;
       }
 } 
