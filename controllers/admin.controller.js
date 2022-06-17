@@ -94,14 +94,78 @@ async function getAllOrders(req, res, next) {
 }
 
 async function getAddCoupon(req, res, next) {
-const couponCode = couponCodeGenerator();
+  let sessionData = req.session.flashedData;
 
+  if (!sessionData) {
+    sessionData = {
+      code: "",
+      type: "persentage",
+      discount: "",
+      expiry: "",
+    };
+  }
 
+  req.session.flashedData = null;
 
-  res.render("admin/add-coupon",{couponCode: couponCode});
+  const couponCode = couponCodeGenerator();
+
+  res.render("admin/add-coupon", {
+    couponCode: couponCode,
+    inputData: sessionData,
+  });
 }
 
 async function addCoupon(req, res, next) {
+  const enteredData = {
+    code: req.body.code,
+    type: req.body.type,
+    discount: req.body.discount,
+    expiry: req.body.expiry,
+  };
+  if (
+    !enteredData.code ||
+    enteredData.code.trim().length < 6 ||
+    !enteredData.discount ||
+    enteredData.discount <= 0 ||
+    !enteredData.expiry
+  ) {
+    req.session.flashedData = {
+      errorMassage:
+        "Code should be more then six charaters ,discount greater then zero and all inputs should be filled!",
+      ...enteredData,
+    };
+    req.session.save(function () {
+      res.redirect("/admin/coupon");
+    });
+
+    return;
+  }
+
+  if (enteredData.type === "persentage" && enteredData.discount >= 100) {
+    req.session.flashedData = {
+      errorMassage:
+        "While type is persentage discount should be less then 100%!",
+      ...enteredData,
+    };
+    req.session.save(function () {
+      res.redirect("/admin/coupon");
+    });
+
+    return;
+  }
+
+  if (new Date(enteredData.expiry).getTime() <= new Date().getTime()) {
+    req.session.flashedData = {
+      errorMassage: "Expiry Date should be in future!",
+      ...enteredData,
+    };
+    req.session.save(function () {
+      res.redirect("/admin/coupon");
+    });
+
+    return;
+  }
+
   const coupon = new Coupon(
     req.body.code,
     req.body.type,
@@ -114,9 +178,8 @@ async function addCoupon(req, res, next) {
   res.redirect("/coupon/success");
 }
 
-function getCouponSuccess(req,res){
+function getCouponSuccess(req, res) {
   res.render("admin/coupon-added");
-
 }
 module.exports = {
   getAllProducts: getAllProducts,

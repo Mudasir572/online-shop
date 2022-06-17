@@ -187,8 +187,8 @@ background-color: #212529;
 
 }
 footer{
-    
     width: 100%;
+    max-width: 80rem;
     margin: 0 auto;
     color: white;
     background-color: rgb(33, 37, 41);

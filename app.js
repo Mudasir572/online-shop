@@ -22,6 +22,9 @@ const errorHandlerMiddleware = require("./middlewares/error-handler");
 const notFoundMiddleware = require("./middlewares/not-found");
 const initializeCartMiddleware = require("./middlewares/initialize-cart");
 const updateCartPricesMiddleware = require("./middlewares/update-cart-prices");
+const deleteExpiredCouponFromSession = require('./middlewares/delete-session-coupon');
+const deleteExpiredCoupon = require('./util/coupon-expiration');
+
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'))
 
@@ -33,6 +36,10 @@ app.use(express.json())
 app.use(expressSession(createSessionConfig()));
 
 app.use(csrf());
+
+setInterval(deleteExpiredCoupon,1000 * 60);
+
+app.use(deleteExpiredCouponFromSession);
 app.use(initializeCartMiddleware);
 
 app.use(updateCartPricesMiddleware);
@@ -40,6 +47,7 @@ app.use(updateCartPricesMiddleware);
 app.use(addCsrfTokenMiddleware);
 
 app.use(checkAuthStatusMiddleware);
+
 
 app.use(cartRoutes);
 app.use(baseRoutes);

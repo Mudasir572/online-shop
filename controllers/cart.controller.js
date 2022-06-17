@@ -1,5 +1,5 @@
 const Product = require("../models/product.model");
-// const Cart = require("../models/cart.model");
+
 
 async function addToCart(req, res, next) {
   let product;
@@ -23,11 +23,14 @@ async function addToCart(req, res, next) {
 function updateCart(req, res) {
   const cart = res.locals.cart;
 
-//   if(req.session.coupon){
-// // console.log("coupon added")
-// // location.reload()
-//     return
-//   }
+  if(req.body.quantity > 4){
+    res.json({
+      errorMessage: "Item quantity limit is 4!",  
+     
+    });
+    return;
+  }
+
   const updatedItemData = cart.updateItem(
     req.body.productId,
     +req.body.quantity

@@ -29,7 +29,8 @@
 
                                 <form class="cart-item-management" data-productid="<%=item.product.id %>"
                                     data-csrf="<%=locals.csrfToken %>">
-                                    <input type="number" value="<%=item.quantity%>" required>
+                                    <input type="number" value="<%=item.quantity%>" max="4" required>
+                                    <p id="cart-item-update-status" style="display: none;color: white;margin: 0;"></p>
                                     <button class="btn">Update</button>
                                 </form>
                             </article>
@@ -43,13 +44,15 @@
                     </form>
 
                     <% } %>
-                        <p class="error-message"
-                            style="display: none;color: rgb(231, 68, 68); margin: 0 auto;text-align: center;">"No such
+                        <p class="error-message">"No such
                             Coupon exists"</p>
-                        <p class="success-message"
-                            style="display: none;color: rgb(49, 171, 45); margin: 0 auto;text-align: center;">"Coupon
+                        <p class="success-message">"Coupon
                             applied!"</p>
-                        
+                            
+
+                         <%if(locals.coupon){  %> 
+                            <p class="expiry">Your Coupon will expire after <%= locals.coupon.expiry.toLocaleDateString()  %> hurry up!</p>
+                            <% } %> 
                                 <div id="cart-total">
 
                                     <p id="discount-detailsss" style="display: none;"> </p>

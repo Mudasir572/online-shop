@@ -29,7 +29,7 @@ const updateOrderFormElements = document.querySelectorAll(
       alert('Something went wrong - could not update order status.');
       return;
     }
-  console.log(response)
+  
     if (!response.ok) {
       alert('Something went wrong - could not update order status.');
       return;

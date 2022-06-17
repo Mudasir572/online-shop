@@ -97,6 +97,25 @@ ul li{
 #cart-total #cart-total-fallback{
 font-size: 1rem;
 }
+.error-message{
+    display: none;
+    color: rgb(231, 68, 68);
+     margin: 0 auto;
+     text-align: center;
+}
+.success-message{
+    display: none;
+    color: rgb(49, 171, 45);
+     margin: 0 auto;
+     text-align: center;
+}
+.expiry{
+   
+    color: white;
+     margin: 0 auto;
+     text-align: center;
+}
+
 @media (max-width: 48rem) {
     .cart-item{
         flex-direction: column;

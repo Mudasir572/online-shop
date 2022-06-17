@@ -4,7 +4,7 @@ const updateCartFormElements = document.querySelectorAll(
 
 const cartTotalPriceElement = document.querySelector("#cart-total-price");
 const cartQuantityBadges = document.querySelectorAll(".nav-items .badge");
-
+const cartItemUpdateStatus = document.getElementById('cart-item-update-status')
 
 async function updateCart(event) {
   event.preventDefault();
@@ -37,6 +37,12 @@ async function updateCart(event) {
   }
 
   const responseData = await response.json();
+
+if(responseData.errorMessage){
+  cartItemUpdateStatus.textContent = "Quantity limit is 4";
+cartItemUpdateStatus.style.display = 'block';
+return;
+}
 
   if(responseData.updatedCartData.newTotalQuantity === 0){
     location.reload();

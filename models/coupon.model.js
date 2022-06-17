@@ -1,4 +1,5 @@
 const db = require("../data/database");
+const mongodb = require('mongodb');
 
 class Coupon {
   constructor(code, type, discount, expiry,couponId) {
@@ -17,7 +18,7 @@ class Coupon {
       code: this.code,
       type: this.type,
       discount: +this.discount,
-      expiryDate: this.expiry,
+      expiry: this.expiry,
      
     };
 
@@ -40,7 +41,7 @@ class Coupon {
       coupon.code,
       coupon.type,
       coupon.discount,
-      coupon.expiryDate,
+      coupon.expiry,
       coupon._id
     );
   }
@@ -48,13 +49,13 @@ class Coupon {
   static async findAll(){
     const coupons = await db.getDb().collection('coupons').find().toArray();
      return coupons.map(function(coupon){
-return new Coupon(coupon.code,coupon.type,coupon.discount,coupon.expiryDate,coupon._id);
+return new Coupon(coupon.code,coupon.type,coupon.discount,coupon.expiry,coupon._id);
      })
 
   }
   async delete(){
-
-    await db.getDb().collection('coupons').deleteOne({_id: this.id})
+const couponId = new mongodb.ObjectId(this.id);
+    await db.getDb().collection('coupons').deleteOne({_id: couponId})
   }
 }
 

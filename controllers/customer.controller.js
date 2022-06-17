@@ -40,6 +40,10 @@ async function applyCoupon(req,res,next){
     }
     
     if(req.session.coupon){
+        
+        res.json({
+            message: "coupon already added!",
+            })
         return
 
 }

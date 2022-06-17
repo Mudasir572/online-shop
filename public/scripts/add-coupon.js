@@ -35,6 +35,11 @@
   
     const responseData = await response.json();
   
+    if(responseData.message){
+      showErrorMessageElement.textContent = "Coupon already applied!";
+      showErrorMessageElement.style.display = 'block';
+      return;
+    }
     totalPriceCartElement.textContent = responseData.totalPrice.toFixed(2);
 
     
