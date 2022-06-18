@@ -154,7 +154,7 @@ async function addCoupon(req, res, next) {
     return;
   }
 
-  if (new Date(enteredData.expiry).getTime() <= new Date().getTime()) {
+  if (new Date(enteredData.expiry).getTime() + 1000 * 60 * 60 * 24 <= new Date().getTime()) {
     req.session.flashedData = {
       errorMassage: "Expiry Date should be in future!",
       ...enteredData,
@@ -175,7 +175,7 @@ async function addCoupon(req, res, next) {
 
   await coupon.save();
 
-  res.redirect("/coupon/success");
+  res.redirect("/admin/coupon/success");
 }
 
 function getCouponSuccess(req, res) {

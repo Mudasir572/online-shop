@@ -14,7 +14,7 @@ if(req.session.coupon){
     if(!existingCoupon){
         req.session.coupon = null;
         
-        res.redirect('/coupon/error')
+        res.redirect('/')
         return
     }
 }
