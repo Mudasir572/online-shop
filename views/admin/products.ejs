@@ -5,8 +5,12 @@
 <body>
     <%- include('../shared/includes/header')  %> 
     <main>
-   <h2>Manage Products.</h2>
+
    <a class="btn-alt" href="/admin/products/new">Add new product</a>
+   <%if(products.length === 0){  %> 
+    <h2>No products yet.Click the button above to add products to your shop.</h2>
+
+    <% } %> 
    <%- include("../shared/includes/products")  %> 
     </main>
 <%-include("../shared/includes/footer")  %> 

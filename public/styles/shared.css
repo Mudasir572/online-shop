@@ -27,6 +27,7 @@ body main {
   color: blueviolet;
   
 }
+
 #main-header {
   background-color: rgb(70, 115, 161);
   color: white;
@@ -99,7 +100,7 @@ body main {
   background-color: #828589;
 }
 .nav-items li:active {
-  background-color: #59616b;
+  background-color: #262a2e;
 }
 .btn {
   padding: 0.3rem;

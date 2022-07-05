@@ -1,11 +1,15 @@
 <%- include('../shared/includes/head',{pageTitle: 'Shop'})  %> 
 <link rel="stylesheet" href="/styles/products.css">
 <script src="/scripts/cart-management.js" defer></script>
+
 </head>
 <body>
     <%- include('../shared/includes/header')  %> 
     <main>
-  <h2>You Can shop all Tech Related things Here.</h2>
+      <%if(products.length === 0){  %> 
+        <h2>No products available.</h2>
+
+        <% } %> 
 <%- include("../shared/includes/products")  %>     
  </main>
 <%-include("../shared/includes/footer")  %> 
