@@ -10,6 +10,10 @@ main{
     
     
 }
+#order-status{
+    display: flex;
+    justify-content: space-between;
+}
 .total-price{
     color: rgb(230, 126, 52);
     font-weight: bold;
@@ -19,6 +23,7 @@ main{
 }
 .single-order article{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 .single-order article address a{
@@ -34,28 +39,54 @@ main{
     background-color: chocolate;
     padding: 0.2rem 0.5rem;
     font-size: 1.5rem;
-    margin-top: 6px;
+    margin-top: 5px;
     display: inline-block;
     border-radius: 6px;
-    
+   
 }
+
 .status-control{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: 0.25rem;
-    align-items: center;
+   
+    justify-content: space-between;
+   
 }
 .order-actions{
-    margin-top: 1rem;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 1rem;
 }
 .status-control select{
- padding: 0.5rem 0.15rem; 
+    font-family: inherit;
+ padding: 0.5rem 0.2rem; 
  border-radius: 4px;
+ border: none;
+ font-size: 1.15rem;
+background-color:  rgb(158, 156, 155);
+ color: white;
 }
-@media (max-width: 39rem) {
+.status-control p{
+    margin: 5px;
+}
+@media (max-width: 35.5rem) {
     .single-order article{
         flex-direction: column;
     
     }
+    #order-status{
+    flex-direction: column;
+    }
+    .status{
+        text-align: center;
+        width: 8rem;
+    }
+    .status-control{
+        
+        flex-direction: column-reverse;
+        
+    }
+    .order-actions{
+        margin-top: 1rem;
+    }
+    
 }

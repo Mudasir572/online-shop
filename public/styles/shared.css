@@ -1,234 +1,217 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-html{
-    font-family: 'Oswald' ,sans-serif;
+html {
+  font-family: "Oswald", sans-serif;
 }
-body{
-    background-color: rgb(33, 37, 41);
-    font-family: 'Oswald', sans-serif;
-    padding: 0;
-    margin: 0;
-    
-    
-    
+body {
+  background-color: rgb(33, 37, 41);
+  font-family: "Oswald", sans-serif;
+  padding: 0;
+  margin: 0;
 }
-#full-nav{
-    background-color: rgb(70, 115, 161);
+body main {
+  min-height: 66vh;
+}
+#full-nav {
+  background-color: rgb(70, 115, 161);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.badge{
+  background-color: white;
+  padding: 2px 5px;
+  border-radius: 50px;
+  color: blueviolet;
+  
+}
+#main-header {
+  background-color: rgb(70, 115, 161);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 4rem;
+  position: static;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+ main {
+  width: 80%;
+  margin: 6rem auto;
+  max-width: 75rem;
+}
+.nav-items ul {
+  display: flex;
+  gap: 2rem;
+}
+#logout-btn {
+  font-family: inherit;
+  /* background-color: rgb(137, 133, 133); */
+  margin: 0;
+  padding: 0;
+}
+#logout-btn:hover {
+  background-color: transparent;
+}
+#logout-btn button {
+  background-color: blueviolet;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  padding: 0.2rem 0.5rem;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#logout-btn button:hover {
+  background-color: rgb(92, 28, 152);
+}
+.nav-items li {
+  list-style: none;
+  font-size: 1.3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.nav-items li a {
+  text-decoration: none;
+  color: white;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+}
+#logo a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+.nav-items li:hover {
+  background-color: #828589;
+}
+.nav-items li:active {
+  background-color: #59616b;
+}
+.btn {
+  padding: 0.3rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.25rem;
+  border-radius: 4px;
+  border: none;
+  padding: 0.3rem 1.25rem;
+  margin: auto;
+  background-color: rgb(137, 133, 133);
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(152, 148, 148);
+}
+
+.btn-alt {
+  text-decoration: none;
+  color: white;
+  background-color: rgb(186, 83, 83);
+  padding: 0.4rem 0.8rem;
+  font-family: inherit;
+  font-weight: bold;
+  font-size: 1.3rem;
+  border-radius: 4px;
+}
+.btn-alt:hover {
+  background-color: rgb(181, 56, 56);
+}
+.form button:hover {
+  background-color: rgb(152, 148, 148);
+}
+
+#mobile-menu {
+  background-color: rgb(70, 115, 161);
+  display: none;
+  position: fixed;
+  top: 64px;
+  width: 100%;
+  left: 0;
+}
+
+#mobile-menu .nav-items ul {
+  flex-direction: column;
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+}
+#mobile-menu .nav-items ul li {
+  margin: 0 auto;
+  padding: 0.5rem 4rem;
+}
+#mobile-menu-btn {
+  background-color: transparent;
+  display: none;
+  width: 2rem;
+  height: 2rem;
+  margin: auto 0;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px;
+}
+#mobile-menu-btn:hover {
+  background-color: #212529;
+}
+#mobile-menu-btn span {
+  background-color: white;
+  height: 3px;
+  display: block;
+
+  margin: 4px 1px;
+}
+footer {
+  width: 100%;
+  margin: 0 auto;
+  color: white;
+  background-color: rgb(60, 68, 75);
+  /* margin-bottom: 1px; */
+}
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+  max-width: 72rem;
+}
+
+@media screen and (max-width: 50rem) {
+  main {
+    margin: 6rem auto;
+    height: auto;
+  }
+  #main-header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-}
-#main-header{
-    background-color: rgb(70, 115, 161);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    height: 4rem;
-    position: static;
-    
-    
-    
-    width: 100%;
-   max-width: 80rem;
-   margin: 0 auto;
-    
-    
-    }
-    main{
-        
-        width: 80%;
-        margin: 6rem auto;
-        max-width: 75rem;
-    }
-.nav-items ul{
-    display: flex;
-    gap: 2rem;
-    
-}
-#logout-btn{
-    font-family: inherit;
-    background-color: rgb(137, 133, 133);
-    margin: 0;
-    padding: 0;
-    
-}
-#logout-btn button{
-    background-color: transparent;
-    border: none;
-    color: white;
-    font-size: 1.3rem;
-    padding: 0.2rem 0.5rem;
-    font-family: inherit;
-    cursor: pointer;
-    border-radius: 4px;
-    
-
-}
-#logout-btn button:hover{
-   background-color:  rgb(152, 148, 148);
-}
-.nav-items li{
-    list-style: none;
-    font-size: 1.3rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-}
-
-.nav-items li a{
-    text-decoration: none;
-    color: white;
-    
-}
-
-
-#logo{
-    display: flex;
-    align-items: center;
-}
-#logo a{
-    text-decoration: none;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-}
- .nav-items li:hover{
-    background-color: #828589;
-  
-}
-.btn{
-    padding: 0.3rem;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 1.25rem;
-    border-radius: 4px;
-    border: none;
-   padding: 0.3rem 1.25rem;
-    margin: auto;
-    background-color: rgb(137, 133, 133);
-    color: #fff;
-    cursor: pointer;
-}
-
-.btn:hover{
-
-    background-color: rgb(152, 148, 148);
-}
-
-.btn-alt{
-    text-decoration: none;
-    color:  white;
-    background-color: rgb(186, 83, 83);
-    padding: 0.4rem 0.8rem;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 1.3rem;
-    border-radius: 4px;
-}
-.btn-alt:hover{
-background-color: rgb(181, 56, 56);
-}
-.form button:hover{
-    background-color: rgb(152, 148, 148);
-}
-
-
-
-#mobile-menu{
-background-color: rgb(70, 115, 161);
-display: none;
-position: fixed;
-top: 64px;
-width: 100%;
-left: 0;
-}
-
-
-
-#mobile-menu .nav-items ul{
-    flex-direction: column;
-    text-align: center;
-    padding: 1rem;
-    margin: 0;
-    
-   
-}
-#mobile-menu .nav-items ul li{
-    margin: 0 auto;
-    padding: 0.5rem 4rem;
-    
-   
-}
-#mobile-menu-btn{
-    background-color: transparent;
-   display: none;
-    width: 2rem;
-    height: 2rem;
-    margin: auto 0;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 4px;
-}
-#mobile-menu-btn:hover{
-background-color: #212529;
-}
-#mobile-menu-btn span{
-    background-color: white;
-    height: 3px;
-    display: block;
-    
-   
-    margin: 4px 1px;
-
-}
-footer{
-    width: 100%;
-    max-width: 80rem;
-    margin: 0 auto;
-    color: white;
-    background-color: rgb(33, 37, 41);
-    margin-bottom: 0%;
-    
-    
-}
-.footer-content{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 4rem;
-    padding: 0 0.5rem;
-   }
-
-
-@media screen and (max-width: 50rem) {
-    main{
-        margin: 6rem auto;
-        height: auto;
-    }
-    #main-header{
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-#main-header .nav-items{
+  }
+  #main-header .nav-items {
     display: none;
+  }
 
-}
-
- 
-#mobile-menu-btn{
+  #mobile-menu-btn {
     display: block;
-}
-#mobile-menu.open{
+  }
+  #mobile-menu.open {
     display: block;
-    }
-    .footer-content{
-       flex-direction: column; 
-       }
+  }
+  .footer-content {
+    flex-direction: column;
+  }
 }
-

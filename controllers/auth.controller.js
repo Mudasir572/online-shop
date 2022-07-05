@@ -86,9 +86,18 @@ async function signUp(req,res) {
     });
     return;
   }
+  
+  const allUsers = await User.findAll();
+  
+  if(!allUsers || allUsers.length === 0){
+    await user.signupAsAdmin();
+  res.redirect("/login");
 
+    return;
+  }
+  
   await user.signup();
-
+  
   res.redirect("/login");
 }
 

@@ -18,6 +18,9 @@
 
                     <% }else{ %>
                         <button class="btn"><a href="/products/<%=product.id %>">View Details</a></button>
+                        
+                        <button  class="btn  addtocart"  data-productid="<%=product.id%>" data-csrf="<%=locals.csrfToken%>">Add To Cart</button>
+                        
                         <% } %>
             </div>
         </div>

@@ -1,8 +1,11 @@
-const addToCartButtonElement = document.querySelector(".product-details button");
+const addToCartButtonElements = document.getElementsByClassName("addtocart");
 const cartQuantitySpans = document.querySelectorAll(".nav-items .badge");
-async function addToCart() {
-  const productId = addToCartButtonElement.dataset.productid;
-  const csrfToken = addToCartButtonElement.dataset.csrf;
+async function addToCart(event) {
+  const button = event.target;
+  // const productId = addToCartButtonElement.dataset.productid;
+  // const csrfToken = addToCartButtonElement.dataset.csrf;
+  const productId = button.dataset.productid;
+  const csrfToken = button.dataset.csrf;
   let response;
   try {
     response = await fetch("/cart", {
@@ -31,4 +34,7 @@ async function addToCart() {
   }
 }
 
-addToCartButtonElement.addEventListener('click', addToCart);
+
+for(const addToCartButtonElement of addToCartButtonElements){
+  addToCartButtonElement.addEventListener('click', addToCart);
+}

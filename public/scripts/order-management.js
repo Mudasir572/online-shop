@@ -37,7 +37,7 @@ const updateOrderFormElements = document.querySelectorAll(
   
     const responseData = await response.json();
   
-    form.parentElement.parentElement.querySelector('.status').textContent =
+    form.parentElement.parentElement.parentElement.querySelector('.status').textContent =
       responseData.newStatus.toUpperCase();
   }
   
