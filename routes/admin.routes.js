@@ -6,9 +6,6 @@ const router = express.Router();
 
 router.get('/admin/products',adminController.getAllProducts);
 
-
-
-
 router.get('/admin/products/new',adminController.getAddProduct);
 
 router.post('/admin/products',imageUploadMiddlewareMulter,adminController.addProduct)

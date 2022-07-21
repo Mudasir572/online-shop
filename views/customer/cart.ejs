@@ -1,6 +1,8 @@
 <%- include('../shared/includes/head',{pageTitle: 'Cart' }) %>
     <link rel="stylesheet" href="/styles/cart.css">
+    <% if(locals.isAuth && locals.cart.totalQuantity> 0){ %>
     <script src="/scripts/add-coupon.js" defer></script>
+<% } %> 
     <script src="/scripts/cart-item-management.js" defer></script>
 
     </head>

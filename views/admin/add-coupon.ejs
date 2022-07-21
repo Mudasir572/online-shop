@@ -1,5 +1,6 @@
 <%- include('../shared/includes/head',{pageTitle: 'Add coupon'})  %> 
 <link rel="stylesheet" href="/styles/forms.css">
+
 </head>
 <body>
     <%- include('../shared/includes/header')  %> 
@@ -11,7 +12,7 @@
                 <p><%= inputData.errorMassage %></p>
             </section>
      <% } %>  
-        <form class="form" action="/admin/coupon" method="POST">
+        <form class="form"  action="/admin/coupon" method="POST">
             <input type="hidden" name="_csrf" value="<%=locals.csrfToken  %>" required>
              <div>
                 <label for="code">Code</label>

@@ -77,6 +77,18 @@ async function deleteProduct(req, res) {
   try {
     product = await Product.findById(req.params.id);
     await product.delete();
+    const fs = require('fs')
+  
+    const path = product.imagePath;
+    
+    fs.unlink(path, (err) => {
+      if (err) {
+        console.log(error)
+        return
+      }
+    
+      
+    })
   } catch (error) {
     return next(error);
   }
