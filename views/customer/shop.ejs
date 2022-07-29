@@ -6,6 +6,9 @@
 <body>
     <%- include('../shared/includes/header')  %> 
     <main>
+      <% if(locals.isAdmin){ %>
+       <a class="btn-alt" href="/admin/products">Manage Products</a>
+       <% } %>
       <%if(products.length === 0){  %> 
         <h2>No products available.</h2>
 
