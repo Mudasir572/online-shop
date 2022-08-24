@@ -3,7 +3,7 @@ const MongoDbStore = require("connect-mongodb-session")(session);
 
 function createSessionStore(){
     const store = new MongoDbStore({
-        uri: "mongodb://127.0.0.1/27017",
+        uri: "mongodb+srv://Mudasir:dataissecure@cluster0.lf51kpk.mongodb.net/?retryWrites=true&w=majority",
         databaseName: 'my-shop',
         collection: "sessions",
     })

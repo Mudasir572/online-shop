@@ -7,6 +7,7 @@ const express = require('express');
 const db = require('./data/database')
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 
 const authRoutes = require("./routes/auth.routes");
@@ -61,8 +62,9 @@ app.use(notFoundMiddleware);
 
 app.use(errorHandlerMiddleware);
 
+
 db.connectToDatabase().then(function(){
-    app.listen(3000);
+    app.listen(port);
 }).catch(function(error){
 console.log('Failed to connect to database!')
 console.log(error);
