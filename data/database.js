@@ -4,10 +4,11 @@ const ServerApiVersion = mongodb.ServerApiVersion;
 const MongoClient = mongodb.MongoClient;
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 
+const DB = process.env.DATABASE;
 let database;
 
 async function connectToDatabase(){
-    const client = await MongoClient.connect("mongodb+srv://Mudasir:dataissecure@cluster0.lf51kpk.mongodb.net/?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+    const client = await MongoClient.connect(DB,{ useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
     // const client = await MongoClient.connect("mongodb+srv://Mudasir:dataissecure@cluster0.lf51kpk.mongodb.net/?retryWrites=true&w=majority");
     // const client = await MongoClient.connect("mongodb+srv://mudasir-ahmed:dataissecure@cluster0.i7tr4.mongodb.net/test");
     database = client.db('my-shop');

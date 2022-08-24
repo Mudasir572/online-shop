@@ -1,3 +1,6 @@
+const dotenv = require("dotenv");
+dotenv.config({ path: './config.env'});
+
 const expressSession = require("express-session");
 const csrf = require('csurf');
 const createSessionConfig = require("./config/session");
@@ -5,10 +8,8 @@ const createSessionConfig = require("./config/session");
 const path = require('path');
 const express = require('express');
 const db = require('./data/database')
-
 const app = express();
 const port = process.env.PORT || 3000;
-
 
 const authRoutes = require("./routes/auth.routes");
 const customerRoutes = require("./routes/customer.routes");
